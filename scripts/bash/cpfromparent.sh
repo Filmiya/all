@@ -13,13 +13,11 @@ if [ $# -eq 0 ]
     echo "EXAMPLE: cpfromparent.sh foo.php"
     exit 1
 fi
-if [ ! -z "$2" ]
-  then
-    parentTheme=$2;
-    childTheme=${2}-child;
-fi
-if [ ! -z "$3" ]
-  then
-    childTheme=$3;
-fi
-echo "You are copying file $file from $defaultPath/$parentTheme to $defaultPath/$childTheme";
+# The -z switch will test if the expansion of the argument is a null string or not
+# ! -z indicates = not null = argument is specified
+# These are considered expansion operators. You may read more at:
+# http://stackoverflow.com/questions/6482377/check-existence-of-input-argument-in-a-bash-shell-script
+# 
+parentTheme=${2:-twentytwelve}
+childTheme=${3:-${parentTheme}-child}
+echo "You are copying file $file from $defaultPath/$parentTheme/$file to $defaultPath/$childTheme";
