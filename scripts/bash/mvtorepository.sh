@@ -1,17 +1,22 @@
 #!/bin/bash
-#cp from parent template to equivalent child
+#move file to repository
 me=`basename "$0"`;
 file=$1;
-defaultPath="/var/www/html/wp-content/themes"
-defaultParentTheme="twentytwelve"
-defaulthChildTheme="$defaultParentTheme-child"
+start="";
+defaultPath="var/www/html/wp-content/themes";
+defaultParentTheme="twentytwelve";
+defaulthChildTheme="$defaultParentTheme-child";
+
+repositoryHome="/home/dntrply/git-repos";
+repository="$repositoryHome/all";
+
 parentTheme=$defaultParentTheme;
 childTheme="${parentTheme}-child";
 
 if [ $# -eq 0 ]
   then
     echo "ERROR: filename not provided"
-    echo "USAGE:   $me filename [parent theme to copy from] [child theme to copy to]"
+    echo "USAGE:   $me filename [child theme to copy from]"
     echo "EXAMPLE: $me foo.php"
     exit 1
 fi
@@ -22,8 +27,7 @@ fi
 # These are considered expansion operators. You may read more at:
 # http://stackoverflow.com/questions/6482377/check-existence-of-input-argument-in-a-bash-shell-script
 # 
-parentTheme=${2:-twentytwelve}
 childTheme=${3:-${parentTheme}-child}
 
-echo "You are copying file $file from $defaultPath/$parentTheme/$file to $defaultPath/$childTheme";
-sudo cp $defaultPath/$parentTheme/$file $defaultPath/$childTheme/
+#echo "sudo cp -r $start/$defaultPath/$childTheme/$file $repository/$defaultPath/$childtheme";
+sudo cp -r $start/$defaultPath/$childTheme/$file $repository/$defaultPath/$childtheme
