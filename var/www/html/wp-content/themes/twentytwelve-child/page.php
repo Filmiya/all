@@ -1,3 +1,4 @@
+<?php /* Template Name: Custom Lockdown */ ?>
 <?php
 /**
  * The template for displaying all pages
